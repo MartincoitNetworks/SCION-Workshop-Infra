@@ -1,5 +1,5 @@
-resource "metal_device" "web1" {
-  hostname         = "web"
+resource "metal_device" "scion" {
+  hostname         = "scion"
   plan             = "c3.small.x86"
   metro            = "DA"
   operating_system = "ubuntu_18_04"
@@ -24,5 +24,4 @@ resource "metal_device" "web1" {
       "/tmp/install-scion-packages.sh",
     ]
   }
-
 }
