@@ -11,3 +11,6 @@ sudo systemctl start scionlab.target
 
 # start web visualization
 sudo systemctl start scion-webapp
+
+# 
+#sudo scionlab-config --host-id=XXX --host-secret=YYY

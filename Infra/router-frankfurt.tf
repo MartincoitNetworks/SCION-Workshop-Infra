@@ -1,15 +1,18 @@
-resource "metal_device" "scion" {
-  hostname         = "scion"
+resource "metal_device" "scion-router-frankfurt" {
+
+  hostname         = "scion-router-frankfurt"
   plan             = "c3.small.x86"
-  metro            = "DA"
+  metro            = "FR"
   operating_system = "ubuntu_18_04"
   billing_cycle    = "hourly"
   project_id       = data.metal_project.scion_project.id
 
+  user_data       = "#cloud-config\n\nssh_authorized_keys:\n  - \"${local_file.infra_public_key.content}\""
+
   connection {
     type        = "ssh"
-    user        = "root"
     host        = self.access_public_ipv4
+    user        = "root"
     private_key = local_file.infra_private_key_pem.content
   }
 
