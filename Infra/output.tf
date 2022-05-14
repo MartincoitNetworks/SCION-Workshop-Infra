@@ -1,14 +1,15 @@
-#output "Dallas" {
-#  description = "Dallas"
-#  value       = metal_device.scion-router-dallas.access_public_ipv4
-#}
+output "Dallas-Keystone-Access-IPv4" {
+  description = "Dallas Keystone Access IPv4"
+  value       = module.dallas-keystone.metal_device.access_public_ipv4
+}
+
 #output "Frankfurt" {
 #  description = "Dallas"
 #  value       = metal_device.scion-router-frankfurt.access_public_ipv4
 #}
 
-output "keystone_os_admin_password" {
-  value        = random_password.os_admin_password
+output "AdminPassword" {
+  value        = random_password.admin_password.result
   description  = "Keystone OS Admin Password"
   sensitive    = true
 }

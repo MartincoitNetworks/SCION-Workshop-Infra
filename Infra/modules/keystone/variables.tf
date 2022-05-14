@@ -8,7 +8,7 @@ variable "metro" {
   description = "Equinix Metal Metro (datacenters)"
 }
 
-variable "keystone_admin_password" {
+variable "admin_password" {
   default     = "topsecret"
   description = "Keystone OS Admin Password"
 }

@@ -16,6 +16,12 @@ resource "metal_device" "this" {
     private_key = "${var.private_key_str}"
   }
 
+  provisioner "remote-exec" {
+    inline = [
+      "sed -i 's/127.0.0.1.*/127.0.0.1 localhost/' /etc/hosts",
+    ]
+  }
+
   provisioner "file" {
     content     = data.template_file.CommonServerSetup.rendered
     destination = "CommonServerSetup.sh"
@@ -38,7 +44,7 @@ data "template_file" "CommonServerSetup" {
   template = file("${path.module}/templates/CommonServerSetup.sh")
 
   vars = {
-    ADMIN_PASS = "${var.keystone_admin_password}"
+    ADMIN_PASS = "${var.admin_password}"
   }
 }
 
@@ -46,6 +52,6 @@ data "template_file" "ControllerKeystone" {
   template = file("${path.module}/templates/ControllerKeystone.sh")
 
   vars = {
-    ADMIN_PASS = "${var.keystone_admin_password}"
+    ADMIN_PASS = "${var.admin_password}"
   }
 }
