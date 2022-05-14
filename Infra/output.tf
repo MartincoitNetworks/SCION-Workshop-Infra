@@ -10,4 +10,5 @@
 output "keystone_os_admin_password" {
   value        = random_password.os_admin_password
   description  = "Keystone OS Admin Password"
+  sensitive    = true
 }
