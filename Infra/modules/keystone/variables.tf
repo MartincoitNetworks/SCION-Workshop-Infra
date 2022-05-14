@@ -8,6 +8,11 @@ variable "metro" {
   description = "Equinix Metal Metro (datacenters)"
 }
 
+variable "keystone_admin_password" {
+  default     = "topsecret"
+  description = "Keystone OS Admin Password"
+}
+
 variable "public_key_str" {
   default     = ""
   description = "SSH Authorized Key - Public Key String"

@@ -34,16 +34,11 @@ resource "metal_device" "this" {
   }
 }
 
-resource "random_password" "os_admin_password" {
-  length  = 16
-  special = false
-}
-
 data "template_file" "CommonServerSetup" {
   template = file("${path.module}/templates/CommonServerSetup.sh")
 
   vars = {
-    ADMIN_PASS = random_password.os_admin_password.result
+    ADMIN_PASS = "${var.keystone_admin_password}"
   }
 }
 
@@ -51,7 +46,6 @@ data "template_file" "ControllerKeystone" {
   template = file("${path.module}/templates/ControllerKeystone.sh")
 
   vars = {
-    ADMIN_PASS = random_password.os_admin_password.result
+    ADMIN_PASS = "${var.keystone_admin_password}"
   }
 }
-
