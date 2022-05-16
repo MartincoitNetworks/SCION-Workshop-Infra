@@ -10,7 +10,7 @@ variable "metro" {
 
 variable "admin_password" {
   default     = "topsecret"
-  description = "Keystone OS Admin Password"
+  description = "OpenStack Admin Password"
 }
 
 variable "public_key_str" {

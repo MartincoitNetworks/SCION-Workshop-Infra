@@ -5,23 +5,20 @@ MY_IP=`hostname -I | xargs -n1 2>/dev/null | grep "^10\." | head -1`
 
 
 ## memcached
-apt-get -y install memcached python-memcache
+export DEBIAN_FRONTEND="noninteractive"
+apt-get -y install memcached python3-memcache
 # set the IP where memchaced is listening
 sed -i '/^-l.*/c\-l '$MY_IP /etc/memcached.conf
 service memcached restart
 ## end of memcached
 
-## mysql - Bionic ships with an older version that breaks Neutron so grab the latest MariaDB
 apt-get -y install software-properties-common
-APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 \
-apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
-add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://www.ftp.saix.net/DB/mariadb/repo/10.3/ubuntu bionic main'
 
 # skip interative prompts
 export DEBIAN_FRONTEND="noninteractive"
 debconf-set-selections <<< "mariadb-server mysql-server/root_password password"
 debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password" 
-apt-get -y install mariadb-server python-pymysql
+apt-get -y install mariadb-server python3-pymysql
 
 cat > /etc/mysql/mariadb.conf.d/99-openstack.cnf << EOF
 [mysqld]

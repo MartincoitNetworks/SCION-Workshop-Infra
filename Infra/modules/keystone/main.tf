@@ -3,7 +3,7 @@ resource "metal_device" "this" {
   hostname         = "controller"
   plan             = "c3.small.x86"
   metro            = "${var.metro}"
-  operating_system = "ubuntu_18_04"
+  operating_system = "ubuntu_22_04"
   billing_cycle    = "hourly"
   project_id       = "${var.project_id}"
 
