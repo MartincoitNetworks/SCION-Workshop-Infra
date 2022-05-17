@@ -23,3 +23,14 @@ variable "private_key_str" {
   description = "SSH PEM Private Key String"
 }
 
+
+variable "admin_password" {
+  default     = ""
+  description = "Keystone Password for Admin User"
+}
+
+variable "demo_password" {
+  default     = ""
+  description = "Keystone Password for Demo User"
+}
+
