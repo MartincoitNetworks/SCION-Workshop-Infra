@@ -40,7 +40,7 @@ service mysql restart
 
 ## rabbitmq
 apt-get -y install rabbitmq-server
-rabbitmqctl add_user openstack RABBIT_PASS
+rabbitmqctl add_user openstack ${RABBIT_PASS}
 rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 ## end of rabbitmq
 
@@ -66,14 +66,14 @@ systemctl start etcd
 ## keystone
 mysql --batch -e "\
 CREATE DATABASE keystone; \
-GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY 'KEYSTONE_DBPASS'; \
-GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY 'KEYSTONE_DBPASS'; \
+GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' IDENTIFIED BY '${KEYSTONE_DBPASS}'; \
+GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' IDENTIFIED BY '${KEYSTONE_DBPASS}'; \
 FLUSH PRIVILEGES;"
 
 # Keystone Packages
 apt-get -y install keystone
 
-crudini --set /etc/keystone/keystone.conf database connection mysql+pymysql://keystone:KEYSTONE_DBPASS@controller/keystone
+crudini --set /etc/keystone/keystone.conf database connection mysql+pymysql://keystone:${KEYSTONE_DBPASS}@controller/keystone
 crudini --set /etc/keystone/keystone.conf token provider fernet
 
 su -s /bin/sh -c "keystone-manage db_sync" keystone
@@ -106,7 +106,7 @@ openstack project create --domain default \
   --description "Demo Project" demo
   
 openstack user create --domain default \
-  --password DEMO_PASS demo
+  --password ${DEMO_PASS} demo
   
 openstack role create user
 

@@ -13,7 +13,7 @@ resource "random_password" "keystone_dbpass" {
   special = false
 }
 
-resource "random_password" "rabbit_pass" {
+resource "random_password" "rabbit_password" {
   length  = 16
   special = false
 }

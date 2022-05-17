@@ -8,11 +8,6 @@ variable "metro" {
   description = "Equinix Metal Metro (datacenters)"
 }
 
-variable "admin_password" {
-  default     = "topsecret"
-  description = "OpenStack Admin Password"
-}
-
 variable "public_key_str" {
   default     = ""
   description = "SSH Authorized Key - Public Key String"

@@ -44,7 +44,10 @@ data "template_file" "CommonServerSetup" {
   template = file("${path.module}/templates/CommonServerSetup.sh")
 
   vars = {
-    ADMIN_PASS = "${var.admin_password}"
+    ADMIN_PASS = "${random_password.admin_password.result}",
+    DEMO_PASS = "${random_password.demo_password.result}",
+    RABBIT_PASS = "${random_password.rabbit_password.result}",
+    KEYSTONE_DBPASS = "${random_password.keystone_dbpass.result}",
   }
 }
 
@@ -52,6 +55,9 @@ data "template_file" "ControllerKeystone" {
   template = file("${path.module}/templates/ControllerKeystone.sh")
 
   vars = {
-    ADMIN_PASS = "${var.admin_password}"
+    ADMIN_PASS = "${random_password.admin_password.result}",
+    DEMO_PASS = "${random_password.demo_password.result}",
+    RABBIT_PASS = "${random_password.rabbit_password.result}",
+    KEYSTONE_DBPASS = "${random_password.keystone_dbpass.result}",
   }
 }
