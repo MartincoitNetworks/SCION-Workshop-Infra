@@ -5,6 +5,7 @@ sudo apt-get install -y scionlab
 
 # applications
 sudo apt-get install scion-apps-*
+sudo apt install scion-apps-bat
 
 # start services
 sudo systemctl start scionlab.target
@@ -14,3 +15,8 @@ sudo systemctl start scion-webapp
 
 # 
 #sudo scionlab-config --host-id=XXX --host-secret=YYY
+
+
+sudo apt install scion-sig
+sudo systemctl start scion-ip-gateway.service
+

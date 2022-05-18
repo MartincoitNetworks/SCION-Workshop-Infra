@@ -1,9 +1,9 @@
 # General setup - applies to Controller and Compute
 
-# sanity check - make sure we can reach the controller
-ping controller -c 5 -q
+# sanity check - make sure we can reach the keystone host
+ping ${KEYSTONE_HOSTNAME} -c 5 -q
 if [ $? -ne 0 ] ; then
-  echo "controller is unreachable via ping"
+  echo "${KEYSTONE_HOSTNAME} is unreachable via ping"
   echo "check /etc/hosts and networking"
 fi
 
@@ -42,7 +42,7 @@ export OS_PASSWORD=${ADMIN_PASS}
 export OS_PROJECT_NAME=admin
 export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_DOMAIN_NAME=Default
-export OS_AUTH_URL=http://controller:5000/v3
+export OS_AUTH_URL=http://${KEYSTONE_HOSTNAME}:5000/v3
 export OS_IDENTITY_API_VERSION=3
 EOF
 
@@ -52,7 +52,7 @@ export OS_USER_DOMAIN_NAME=Default
 export OS_PROJECT_NAME=demo
 export OS_USERNAME=demo
 export OS_PASSWORD=${DEMO_PASS}
-export OS_AUTH_URL=http://controller:5000/v3
+export OS_AUTH_URL=http://${KEYSTONE_HOSTNAME}:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 EOF

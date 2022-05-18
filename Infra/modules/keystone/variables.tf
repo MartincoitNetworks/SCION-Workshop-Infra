@@ -3,6 +3,11 @@ variable "project_id" {
   description = "Equinix Metal Project to deploy instance"
 }
 
+variable "name" {
+  default     = "controller"
+  description = "Hostname to assign to this bare metal device"
+}
+
 variable "metro" {
   default     = "DA"
   description = "Equinix Metal Metro (datacenters)"

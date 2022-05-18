@@ -1,6 +1,6 @@
 resource "metal_device" "this" {
 
-  hostname         = "controller"
+  hostname         = "${var.name}"
   plan             = "c3.small.x86"
   metro            = "${var.metro}"
   operating_system = "ubuntu_22_04"
@@ -44,6 +44,7 @@ data "template_file" "CommonServerSetup" {
   template = file("${path.module}/templates/CommonServerSetup.sh")
 
   vars = {
+    KEYSTONE_HOSTNAME = "${var.name}",
     ADMIN_PASS = "${var.admin_password.result}",
     DEMO_PASS = "${var.demo_password.result}",
     RABBIT_PASS = "${random_password.rabbit_password.result}",
@@ -55,6 +56,7 @@ data "template_file" "ControllerKeystone" {
   template = file("${path.module}/templates/ControllerKeystone.sh")
 
   vars = {
+    KEYSTONE_HOSTNAME = "${var.name}",
     ADMIN_PASS = "${var.admin_password.result}",
     DEMO_PASS = "${var.demo_password.result}",
     RABBIT_PASS = "${random_password.rabbit_password.result}",

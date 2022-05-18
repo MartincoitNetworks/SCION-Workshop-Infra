@@ -16,6 +16,7 @@ module "dallas-scion-router" {
 }
 
 module "dallas-keystone" {
+  name            = "dallas-keystone"
   metro           = "DA"
   source          = "./modules/keystone/"
   project_id      = data.metal_project.scion_project.id
@@ -35,6 +36,7 @@ module "frankfurt-scion-router" {
 }
 
 module "frankfurt-keystone" {
+  name            = "frankfurt-keystone"
   metro           = "FR"
   source          = "./modules/keystone/"
   project_id      = data.metal_project.scion_project.id
