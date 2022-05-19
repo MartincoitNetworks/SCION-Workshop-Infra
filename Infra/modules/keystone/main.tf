@@ -23,6 +23,17 @@ resource "metal_device" "this" {
   }
 
   provisioner "file" {
+    content     = data.template_file.InstallSCION.rendered
+    destination = "installSCION.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "bash installSCION.sh > installSCION.out",
+    ]
+  }
+
+  provisioner "file" {
     content     = data.template_file.CommonServerSetup.rendered
     destination = "CommonServerSetup.sh"
   }
@@ -37,6 +48,13 @@ resource "metal_device" "this" {
       "bash CommonServerSetup.sh > CommonServerSetup.out",
       "bash ControllerKeystone.sh > ControllerKeystone.out",
     ]
+  }
+}
+
+data "template_file" "InstallSCION" {
+  template = file("${path.module}/templates/installSCION.sh")
+
+  vars = {
   }
 }
 

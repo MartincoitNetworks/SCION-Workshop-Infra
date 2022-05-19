@@ -6,14 +6,14 @@
 
 
 
-module "dallas-scion-router" {
-  name            = "dallas-scion-router"
-  metro           = "DA"
-  source          = "./modules/scion-router/"
-  project_id      = data.metal_project.scion_project.id
-  public_key_str  = local_file.infra_public_key.content
-  private_key_str = local_file.infra_private_key_pem.content
-}
+#module "dallas-scion-router" {
+#  name            = "dallas-scion-router"
+#  metro           = "DA"
+#  source          = "./modules/scion-router/"
+#  project_id      = data.metal_project.scion_project.id
+#  public_key_str  = local_file.infra_public_key.content
+#  private_key_str = local_file.infra_private_key_pem.content
+#}
 
 module "dallas-keystone" {
   name            = "dallas-keystone"
@@ -26,18 +26,18 @@ module "dallas-keystone" {
   demo_password   = random_password.keystone_demo_password
 }
 
-module "frankfurt-scion-router" {
-  name            = "frankfurt-scion-router"
-  metro           = "FR"
-  source          = "./modules/scion-router/"
-  project_id      = data.metal_project.scion_project.id
-  public_key_str  = local_file.infra_public_key.content
-  private_key_str = local_file.infra_private_key_pem.content
-}
+#module "frankfurt-scion-router" {
+#  name            = "frankfurt-scion-router"
+#  metro           = "FR"
+#  source          = "./modules/scion-router/"
+#  project_id      = data.metal_project.scion_project.id
+#  public_key_str  = local_file.infra_public_key.content
+#  private_key_str = local_file.infra_private_key_pem.content
+#}
 
-module "frankfurt-keystone" {
-  name            = "frankfurt-keystone"
-  metro           = "FR"
+module "amsterdam-keystone" {
+  name            = "amsterdam-keystone"
+  metro           = "AM"
   source          = "./modules/keystone/"
   project_id      = data.metal_project.scion_project.id
   public_key_str  = local_file.infra_public_key.content
