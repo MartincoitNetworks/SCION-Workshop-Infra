@@ -34,6 +34,17 @@ resource "metal_device" "this" {
   }
 
   provisioner "file" {
+    content     = data.template_file.setupWorkshop.rendered
+    destination = "setupWorkshop.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "bash setupWorkshop.sh > setupWorkshop.out",
+    ]
+  }
+
+  provisioner "file" {
     content     = data.template_file.CommonServerSetup.rendered
     destination = "CommonServerSetup.sh"
   }
@@ -53,6 +64,13 @@ resource "metal_device" "this" {
 
 data "template_file" "InstallSCION" {
   template = file("${path.module}/templates/installSCION.sh")
+
+  vars = {
+  }
+}
+
+data "template_file" "setupWorkshop" {
+  template = file("${path.module}/templates/setupWorkshop.sh")
 
   vars = {
   }

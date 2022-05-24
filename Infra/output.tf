@@ -3,10 +3,10 @@ output "Dallas-Keystone-Access-IPv4" {
   value       = module.dallas-keystone.metal_device.access_public_ipv4
 }
 
-output "Amsterdam-Keystone-Access-IPv4" {
-  description = "Amsterdam Keystone Access IPv4"
-  value       = module.amsterdam-keystone.metal_device.access_public_ipv4
-}
+#output "Amsterdam-Keystone-Access-IPv4" {
+#  description = "Amsterdam Keystone Access IPv4"
+#  value       = module.amsterdam-keystone.metal_device.access_public_ipv4
+#}
 
 #output "Dallas-SCION" {
 #  description = "Dallas SCION"
