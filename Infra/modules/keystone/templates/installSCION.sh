@@ -7,15 +7,15 @@ sudo apt-get install -y scionlab
 sudo apt-get install scion-apps-*
 sudo apt install scion-apps-bat
 
+
+# pull down configuration data from SCIONLab 
+sudo scionlab-config --host-id=${SCIONCONFIG_HOST_ID} --host-secret=${SCIONCONFIG_HOST_SECRET}
+
 # start services
 sudo systemctl start scionlab.target
 
 # start web visualization
 sudo systemctl start scion-webapp
-
-# 
-#sudo scionlab-config --host-id=XXX --host-secret=YYY
-
 
 sudo apt install scion-sig
 sudo systemctl start scion-ip-gateway.service

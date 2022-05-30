@@ -66,6 +66,8 @@ data "template_file" "InstallSCION" {
   template = file("${path.module}/templates/installSCION.sh")
 
   vars = {
+    SCIONCONFIG_HOST_ID      = "${var.scion_config_host_id}",
+    SCIONCONFIG_HOST_SECRET  = "${var.scion_config_host_secret}"
   }
 }
 
@@ -73,6 +75,8 @@ data "template_file" "setupWorkshop" {
   template = file("${path.module}/templates/setupWorkshop.sh")
 
   vars = {
+    SCIONCONFIG = "${var.name}",
+    ADMIN_PASS = "${var.admin_password.result}",
   }
 }
 

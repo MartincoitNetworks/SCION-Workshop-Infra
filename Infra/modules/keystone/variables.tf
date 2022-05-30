@@ -33,3 +33,12 @@ variable "demo_password" {
   description = "Keystone Demo User Password"
 }
 
+variable "scion_config_host_id" {
+  default     = ""
+  description = "SCIONLab Config Host ID"
+}
+
+variable "scion_config_host_secret" {
+  default     = ""
+  description = "SCIONLab Config Host Secret"
+}
