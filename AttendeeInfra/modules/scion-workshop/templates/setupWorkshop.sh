@@ -2,7 +2,10 @@
 
 # add the workshop user
 adduser --disabled-password --gecos "" workshop
-echo "Berlin2022" | passwd --stdin workshop
+echo "workshop:Berlin2022" | sudo chpasswd
+sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
+systemctl restart sshd
+
 
 # give the workshop user su permissions
 cat > /etc/sudoers.d/91-workshop << EOF
