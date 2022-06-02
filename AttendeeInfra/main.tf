@@ -5,8 +5,8 @@
 #
 
 module "workshop" {
-  name                     = "${format("workshop-%02d", count.index +1)}"
-  count                    = 2
+  name                     = "${format("workshop-%02d", count.index +11)}"
+  count                    = 3
   metro                    = "DA"
   source                   = "./modules/scion-workshop/"
   project_id               = data.metal_project.scion_project.id
