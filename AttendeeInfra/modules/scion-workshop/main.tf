@@ -1,4 +1,4 @@
-resource "metal_device" "this" {
+resource "equinix_metal_device" "this" {
 
   hostname         = "${var.name}"
   plan             = "c3.small.x86"

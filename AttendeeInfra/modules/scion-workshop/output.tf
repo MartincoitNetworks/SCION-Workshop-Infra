@@ -1,3 +1,3 @@
-output "metal_device" {
-  value = metal_device.this
+output "equinix_metal_device" {
+  value = equinix_metal_device.this
 }

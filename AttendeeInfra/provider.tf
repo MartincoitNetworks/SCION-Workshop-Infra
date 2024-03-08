@@ -1,7 +1,12 @@
 terraform {
   required_providers {
-    metal = {
-      source = "equinix/metal"
+    equinix = {
+      source = "equinix/equinix"
     }
   }
+}
+
+# Credentials for only Equinix Metal resources
+provider "equinix" {
+  auth_token    = ""
 }

@@ -7,7 +7,7 @@ locals {
   ssh_key_name = "infra-key"
 }
 
-resource "metal_ssh_key" "ssh_pub_key" {
+resource "equinix_metal_ssh_key" "ssh_pub_key" {
   name       = "ssh_pub_key"
   public_key = chomp(tls_private_key.ssh_key_pair.public_key_openssh)
 }

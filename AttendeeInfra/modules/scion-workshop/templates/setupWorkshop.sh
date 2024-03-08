@@ -2,8 +2,11 @@
 
 # add the workshop user
 adduser --disabled-password --gecos "" workshop
-echo "workshop:Berlin2022" | sudo chpasswd
-sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
+echo "workshop:Pasadena2024" | sudo chpasswd
+rm -f /etc/ssh/sshd_config.d/50-cloud-init.conf
+rm -f /etc/ssh/sshd_config.d/60-cloudimg-settings.conf
+echo "PasswordAuthentication yes" | sudo tee -a /etc/ssh/sshd_config.d/50-scion-workshop
+
 systemctl restart sshd
 
 
